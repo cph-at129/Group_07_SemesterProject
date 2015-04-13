@@ -19,7 +19,7 @@ import java.sql.SQLException;
  *
  * - maps between classes and tables
  */
-public class ProjectProposalMapper {
+public class ProposalMapper {
 
     /*
      the method should submit new Proposal to the Database

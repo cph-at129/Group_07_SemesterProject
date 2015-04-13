@@ -1,6 +1,10 @@
 
 package dataSource.mappers;
 
+import domain.POE;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 /*   THIS CLASS IS ORGANIZING THE DATA TRANSPORT
      BETWEEN THE DOMAIN LAYER AND THE DATABASE
 */
@@ -28,17 +32,27 @@ public class POEMapper {
 //    
 //    }
 //    
-//    /*
-//      the method should save new POE to the Database
-//    */
-//    public boolean saveNewPOE(POE poe, Connection con){
-//    
-//      //build INSERT statement
-//        
-//      //execute statement
-//        
-//      //return the status  
-//    
-//    }
+    /*
+      the method should save new POE to the Database
+    */
+    public boolean submitPOE(POE poe, Connection con){
+    
+        int rowsInserted = 0;
+        
+        String sqlString = 
+                "INSERT INTO poe"
+                + "VALUES (?,?,?)";
+        
+        PreparedStatement statement = null;
+        
+        try {
+            
+            statement = con.prepareStatement(sqlString);
+            
+            statement.setInt(1, poe.getPoeID());
+            
+        } catch (Exception e) {
+        }
+    }
     
 }

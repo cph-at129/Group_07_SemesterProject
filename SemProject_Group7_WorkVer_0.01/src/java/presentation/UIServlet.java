@@ -37,7 +37,7 @@ public class UIServlet extends HttpServlet {
 
         switch (command) {
 
-            case:"registerUser":
+            case "registerUser":
                 registerUser(request, response, con); 
             case "logIn":
                 logIn(request, response, con);
@@ -50,29 +50,50 @@ public class UIServlet extends HttpServlet {
 
 
     }
-    
+    /*
+      the method should save a new user in the database
+      
+    */
     private void registerUser(HttpServletRequest request,
             HttpServletResponse response,
             Controller con) throws ServletException, IOException{
-    
         
-    
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String fName = request.getParameter("fName");
+        String lName = request.getParameter("lName");
+        String phone = request.getParameter("phone");
+        
+        boolean status = con.registerUser(login, password, fName, lName, phone);
+        
+        if(status){
+            //load the Dell or Partner web interface
+        }else{
+            //reset the register page
+        }    
     }
     
     /*
        the method checks if the user has logged in successfully
      */
-    private boolean logIn(HttpServletRequest request,
+    private void logIn(HttpServletRequest request,
             HttpServletResponse response,
             Controller con) throws ServletException, IOException {
 
-        String userID = request.getParameter("userID");
+        String login = request.getParameter("login");
         String password = request.getParameter("password");
         
-        boolean status = con.logIn(userID, password);
+        boolean status = con.logIn(login, password);
         
-        return status;
+        if(status){
+            //load Dell or Partner information from the Database
+            //and dispay it in jsp page
+            
+        }else{
+            //reset the login page
+        }
         
+                
     }
 
     /*

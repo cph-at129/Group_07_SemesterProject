@@ -2,7 +2,7 @@
 package dataSource;
 
 import dataSource.mappers.POEMapper;
-import dataSource.mappers.ProjectProposalMapper;
+import dataSource.mappers.ProposalMapper;
 import dataSource.mappers.UserMapper;
 import domain.POE;
 import domain.Proposal;
@@ -16,8 +16,8 @@ import java.sql.Connection;
 */
 
 public class DBFacade {
-          private ProjectProposalMapper projectPMapper;
-          private UserMapper urMapper;
+          private ProposalMapper projectMapper;
+          private UserMapper userMapper;
           private POEMapper poeMapper;
 	  private Connection con;
 	  
@@ -25,8 +25,8 @@ public class DBFacade {
 	  private static DBFacade instance;
 	 
 	  private DBFacade() {
-                  projectPMapper = new ProjectProposalMapper();
-                  urMapper = new UserMapper();
+                  projectMapper = new ProposalMapper();
+                  userMapper = new UserMapper();
 		  con 	= DBConnector.getInstance().getConnection();  		  
 	  }
 	  public static DBFacade getInstance()
@@ -39,19 +39,25 @@ public class DBFacade {
 
     public boolean submitProjectProposal(Proposal projectP) {
         
-        return projectPMapper.submitProjectProposal(projectP, con);
+        return projectMapper.submitProjectProposal(projectP, con);
         
     }
 
     public boolean logIn(User ur) {
         
-        return urMapper.logIn(ur, con);
+        return userMapper.logIn(ur, con);
         
     }
 
     public boolean submitPOE(POE poe) {
         
         return poeMapper.submitPOE(poe, con);
+        
+    }
+
+    public boolean registerUser(User dbfUser) {
+        
+        return userMapper.registerUser(dbfUser, con);
         
     }
     

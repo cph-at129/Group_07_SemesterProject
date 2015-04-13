@@ -76,7 +76,17 @@ public class Controller {
         return dbf.logIn(conUser);
         
     }
-
+    public boolean submitPOE(int partnerID, String submissionDate){
+    
+        //create a unique poeID
+        int poeID = 1111;
+        
+        conPOE = new POE(poeID, partnerID, submissionDate);
+        
+        return dbf.submitPOE(conPOE);
+    
+    }
+    
 
 
 

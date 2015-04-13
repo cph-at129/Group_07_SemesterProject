@@ -1,29 +1,44 @@
 
 package dataSource.mappers;
 
-import domain.POE;
-import java.sql.Connection;
-
 /*   THIS CLASS IS ORGANIZING THE DATA TRANSPORT
      BETWEEN THE DOMAIN LAYER AND THE DATABASE
 */
-
-   //THE CLASS MUST DEVELOP THE OBJECT MODEL AND THE DATABASE SCHEMA INDEPENDETLY
+public class POEMapper {
+    
+    //THE CLASS MUST DEVELOP THE OBJECT MODEL AND THE DATABASE SCHEMA INDEPENDETLY
     
     //should isolate SQL from Domain logic
     
     //maps between classes and tables
-public class POEMapper {
-
     
     
-    public boolean submitPOE(POE poe, Connection con) {
-        
-        
-        
-        
-    }
-    
- 
+    /*
+       the method should open POE from the database
+    */
+//    public POE openPOE(int poeID, Connection con){
+//    
+//      //build SELECT statement
+//      
+//      //execute statement
+//        
+//      //transfer POE from Database to a ??Collection??
+//        
+//      //return Domain object  
+//    
+//    }
+//    
+//    /*
+//      the method should save new POE to the Database
+//    */
+//    public boolean saveNewPOE(POE poe, Connection con){
+//    
+//      //build INSERT statement
+//        
+//      //execute statement
+//        
+//      //return the status  
+//    
+//    }
     
 }

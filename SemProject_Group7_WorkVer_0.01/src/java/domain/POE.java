@@ -11,29 +11,4 @@ package domain;
  */
 public class POE {
     
-    private int poeID;
-    private String submissionDate;
-    
-    public POE( int poeID, String submissionDate){
-    
-        this.poeID = poeID;
-        this.submissionDate = submissionDate;
-    }
-
-    public String getSubmissionDate() {
-        return submissionDate;
-    }
-
-    public void setSubmissionDate(String submissionDate) {
-        this.submissionDate = submissionDate;
-    }
-
-    public int getPoeID() {
-        return poeID;
-    }
-
-    public void setPoeID(int poeID) {
-        this.poeID = poeID;
-    }
-    
 }

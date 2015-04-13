@@ -1,73 +1,99 @@
 /*
-  provides an interface to the services offered by the system
-  handles communication between user and system (input and output)
-  typically Java Swing classes or an HTML browser
-  uses the services of the Domain Layer
+ provides an interface to the services offered by the system
+ handles communication between user and system (input and output)
+ typically Java Swing classes or an HTML browser
+ uses the services of the Domain Layer
 
-*/
+ */
 package presentation;
 
 import domain.Controller;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "UIServlet", urlPatterns = {"/UIServlet"})
 public class UIServlet extends HttpServlet {
 
-    Controller con;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession sessionObj = request.getSession();
+        Controller con = (Controller) sessionObj.getAttribute("Controller");
+        if (con == null) {
+            // Session starts
+            con = Controller.getInstance();
+            sessionObj.setAttribute("Controller", con);
+        } else {
+            con = (Controller) sessionObj.getAttribute("Controller");
+        }
+
+        String command = request.getParameter("command");
+
+        switch (command) {
+
+            case "logIn":
+                logIn(request, response, con);
+            case "submitNewProjectProposal":
+                submitProjectProposal(request, response, con);
+            case "submitPOE":
+                submitPOE(request, response, con);
+        }
         
-        con = con.getInstance();
-        submitProjectProposal(request, response, con);
+
+
+    }
+    /*
+       the method checks if the user has logged in successfully
+     */
+    private boolean logIn(HttpServletRequest request,
+            HttpServletResponse response,
+            Controller con) throws ServletException, IOException {
+
         
         
     }
+
     /*
-      the method should check the provided input and return 
-      the status
-    */
-//    private boolean logIn(String id, String password){
-//    
-//      
-//    
-//    }
+     the method saves the ProjectProposal in the Database
+     and checks if it is saved successfuly or not 
+     */
+    private boolean submitProjectProposal(HttpServletRequest request,
+            HttpServletResponse response,
+            Controller con) throws ServletException, IOException {
+
+        String partnerName = request.getParameter("partnerName");
+        String country = request.getParameter("country");
+        String activity = request.getParameter("activity");
+
+        //send the input to the Controller and check the status 
+        boolean status = con.submitProjectProposal(partnerName, country, activity);
+
+        request.setAttribute("partnerName", partnerName);
+        request.setAttribute("country", country);
+        request.setAttribute("activity", activity);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("SubmittedProjectProposal.jsp");
+        dispatcher.forward(request, response);
+        return status;
+    }
     
     /*
-      the method should take the filled form 
-      and return true if the submit is successfull
+      the method saves the POE in the Database 
+      and checks if it's saved successfully or not
     */
-    private boolean submitProjectProposal(HttpServletRequest request, 
-                                          HttpServletResponse response,
-                                          Controller con){
-       //get the input
-       String partnerName = request.getParameter("partnerName");
-       String country = request.getParameter("country");
-       String activity = request.getParameter("activity");
-       
-        System.out.println("IN UISERVLET  " + partnerName);
-       
-       //send the input to the Controller and check the status 
-       boolean status = con.submitProjectProposal(partnerName, country, activity);
-       
-       return status;
+    private boolean submitPOE(HttpServletRequest request,
+            HttpServletResponse response,
+            Controller con) throws ServletException, IOException{
+    
+        
+    
     }
-    /*
-      the method should return the projectProposal 
-      according to the provided projectProposalID parameter
-    */
-//    private ProjectProposal reviewProjectProposal(projectProposalID){
-//    
-//      
-//    
-//    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

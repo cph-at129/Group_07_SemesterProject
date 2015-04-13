@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="2ndSemester">
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/web/ProjectProposalSubmit.jsp</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/src/java/domain/Controller.java</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/src/java/domain/ProjectProposal.java</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/src/java/dataSource/mappers/ProjectProposalMapper.java</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/src/java/dataSource/DBFacade.java</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/src/java/dataSource/mappers/POEMapper.java</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/src/java/dataSource/mappers/DocumentsMapper.java</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/web/index.html</file>
-            <file>file:/D:/Others/CphBusiness/2nd%20semester/Architecture/Projects/SemProject_Group7_WorkVer_0.01/src/java/presentation/UIServlet.java</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/src/java/dataSource/DBFacade.java</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/web/POE.html</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/web/ProjectProposal.html</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/src/java/domain/Controller.java</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/web/LogIn.html</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/web/index.html</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/web/SubmittedProjectProposal.jsp</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/src/java/presentation/UIServlet.java</file>
+            <file>file:/D:/Others/CphBusiness/2nd%20semester/PROJECT/Group_07_SemesterProject/Group_07_SemesterProject/SemProject_Group7_WorkVer_0.01/src/java/dataSource/mappers/ProjectProposalMapper.java</file>
         </group>
     </open-files>
 </project-private>

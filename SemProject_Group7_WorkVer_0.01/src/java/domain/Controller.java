@@ -20,7 +20,7 @@ import dataSource.DBFacade;
 
 public class Controller {
     
-    private static Controller instance = null;
+    private static Controller instance;
     private DBFacade dbf;
     private ProjectProposal projectP;
     
@@ -31,7 +31,7 @@ public class Controller {
     
     }
     
-    public Controller getInstance(){
+    public static Controller getInstance(){
     
       if(instance == null)
          instance = new Controller();
@@ -41,10 +41,10 @@ public class Controller {
     //submit project proposal
     public boolean submitProjectProposal(String partnerName, String country, String activity){
         
-        System.out.println("In CONTROLLER" + partnerName);
-        
         projectP = new ProjectProposal(partnerName, country, activity);
         
+        System.out.println("IN controller");
+        System.out.println(projectP);
         boolean status = dbf.submitProjectProposal(projectP);
         
         return status;

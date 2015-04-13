@@ -7,6 +7,7 @@
 package domain;
 
 import dataSource.DBFacade;
+import java.util.Random;
 
 /*
 
@@ -24,6 +25,7 @@ public class Controller {
     private DBFacade dbf;
     private ProjectProposal projectP;
     private User ur;
+    private Random generator;
     
     private Controller(){
         
@@ -104,17 +106,20 @@ public class Controller {
     /*
        the method checks if the user has logged in successfully
      */
-    public boolean logIn(String userID, String password) {
+    public boolean logIn(String userID, String password, String fName, String lName, String phone) {
         
-        User ur = new User(userID, password);
+        User ur = new User(userID, password, fName, lName, phone);
         
         return dbf.logIn(ur);
         
     }
 
-    public boolean submitPOE() {
+    public boolean submitPOE(String submissionDate) {
         
-        POE poe = new POE();
+        //create a poeID value
+        int poeID = 1111;
+        
+        POE poe = new POE(poeID, submissionDate);
         
         return dbf.submitPOE(poe);
         

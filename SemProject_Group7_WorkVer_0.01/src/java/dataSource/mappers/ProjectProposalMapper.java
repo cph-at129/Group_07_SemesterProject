@@ -38,9 +38,9 @@ public class ProjectProposalMapper {
 
             statement = con.prepareStatement(SQLString2);
 
-            statement.setString(1, projectP.getPartnerName());
-            statement.setString(2, projectP.getCountry());
-            statement.setString(3, projectP.getActivity());
+            statement.setString(1, projectP.getName());
+            statement.setString(2, projectP.getSubmissionDate());
+            statement.setString(3, projectP.getPartnerName());
             
             statement.executeQuery();
             rowsInserted = statement.executeUpdate(SQLString2);

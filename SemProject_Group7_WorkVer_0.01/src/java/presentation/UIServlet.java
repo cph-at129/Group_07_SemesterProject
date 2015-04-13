@@ -57,8 +57,11 @@ public class UIServlet extends HttpServlet {
 
         String userID = request.getParameter("userID");
         String password = request.getParameter("password");
+        String fName = request.getParameter("fName");
+        String lName = request.getParameter("lName");
+        String phone = request.getParameter("phone");
         
-        boolean status = con.logIn(userID, password);
+        boolean status = con.logIn(userID, password, fName, lName, phone);
         
         return status;
         
@@ -95,8 +98,11 @@ public class UIServlet extends HttpServlet {
     private boolean submitPOE(HttpServletRequest request,
             HttpServletResponse response,
             Controller con) throws ServletException, IOException{
-    
-        boolean status = con.submitPOE();
+        
+        String submissionDate = request.getParameter("submissionDate");
+        
+        
+        boolean status = con.submitPOE(submissionDate);
     
     }
     

@@ -55,7 +55,12 @@ public class UIServlet extends HttpServlet {
             HttpServletResponse response,
             Controller con) throws ServletException, IOException {
 
+        String userID = request.getParameter("userID");
+        String password = request.getParameter("password");
         
+        boolean status = con.logIn(userID, password);
+        
+        return status;
         
     }
 
@@ -91,7 +96,15 @@ public class UIServlet extends HttpServlet {
             HttpServletResponse response,
             Controller con) throws ServletException, IOException{
     
-        
+        boolean status = con.submitPOE();
+    
+    }
+    
+    private boolean submitDocuments(HttpServletRequest request,
+            HttpServletResponse response,
+            Controller con) throws ServletException, IOException{
+    
+        boolean status = con.submitDocuments();
     
     }
 

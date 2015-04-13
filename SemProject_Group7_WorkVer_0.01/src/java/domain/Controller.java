@@ -23,11 +23,13 @@ public class Controller {
     private static Controller instance;
     private DBFacade dbf;
     private ProjectProposal projectP;
+    private User ur;
     
     private Controller(){
         
        dbf = DBFacade.getInstance();
        projectP = null;
+       ur = null;
     
     }
     
@@ -97,4 +99,24 @@ public class Controller {
     //show spreadsheet form with data and statistics
     
     //view remaining budget
+    
+    
+    /*
+       the method checks if the user has logged in successfully
+     */
+    public boolean logIn(String userID, String password) {
+        
+        User ur = new User(userID, password);
+        
+        return dbf.logIn(ur);
+        
+    }
+
+    public boolean submitPOE() {
+        
+        POE poe = new POE();
+        
+        return dbf.submitPOE(poe);
+        
+    }
 }

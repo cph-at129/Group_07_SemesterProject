@@ -5,7 +5,7 @@
  */
 package dataSource.mappers;
 
-import domain.ProjectProposal;
+import domain.Proposal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,9 +22,9 @@ import java.sql.SQLException;
 public class ProjectProposalMapper {
 
     /*
-     the method should submit new ProjectProposal to the Database
+     the method should submit new Proposal to the Database
      */
-    public boolean submitProjectProposal(ProjectProposal projectP, Connection con) {
+    public boolean submitProjectProposal(Proposal projectP, Connection con) {
 
         int rowsInserted = 0;
         
@@ -38,9 +38,9 @@ public class ProjectProposalMapper {
 
             statement = con.prepareStatement(SQLString2);
 
-            statement.setString(1, projectP.getPartnerName());
-            statement.setString(2, projectP.getCountry());
-            statement.setString(3, projectP.getActivity());
+            statement.setString(1, projectP.getProposalName());
+            statement.setString(2, projectP.getSubmissionDate());
+            statement.setString(3, projectP.getApprovalDate());
             
             statement.executeQuery();
             rowsInserted = statement.executeUpdate(SQLString2);
@@ -62,9 +62,9 @@ public class ProjectProposalMapper {
     }
 
     /*
-     the method should open ProjectProposal from the database
+     the method should open Proposal from the database
      */
-//    public ProjectProposal openProjectProposal(int projectID, Connection con) {
+//    public Proposal openProjectProposal(int projectID, Connection con) {
 //
 //      //build SELECT statement
 //      //execute statement

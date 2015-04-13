@@ -12,13 +12,22 @@ package domain;
 public class POE {
     
     private int poeID;
+    private int partnerID;
     private String submissionDate;
-    
-    public POE( int poeID, String submissionDate){
-    
-        this.poeID = poeID;
+    private String approvalDate;
+
+    public POE(String submissionDate, String approvalDate) {
         this.submissionDate = submissionDate;
+        this.approvalDate = approvalDate;
     }
+
+    public POE(int poeID, int partnerID, String submissionDate, String approvalDate) {
+        this.poeID = poeID;
+        this.partnerID = partnerID;
+        this.submissionDate = submissionDate;
+        this.approvalDate = approvalDate;
+    }
+    
 
     public String getSubmissionDate() {
         return submissionDate;
@@ -36,4 +45,15 @@ public class POE {
         this.poeID = poeID;
     }
     
+    @Override
+    public String toString(){
+    
+        return  poeID + "  " +  partnerID + "  " +  submissionDate + "  " + approvalDate;
+     
+    }
+    public String toString1(){
+    
+        return  submissionDate + "  " + approvalDate;
+     
+    }
 }

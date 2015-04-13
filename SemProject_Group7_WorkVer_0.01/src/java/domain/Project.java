@@ -90,7 +90,7 @@ public class Project {
     @Override
     public String toString(){
     
-        return  projectID + "  " + projectName + "  " +  startDate + "  " +  endDate + "  " + budget + "  " + completed;
+        return  projectID + "  " + projectName + "  " +  startDate + "  " +  endDate + "  " + budget + "  "  + partnerID + "  " + completed;
      
     }
     public String toString1(){

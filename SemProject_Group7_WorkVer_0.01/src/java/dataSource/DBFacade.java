@@ -5,7 +5,7 @@ import dataSource.mappers.POEMapper;
 import dataSource.mappers.ProjectProposalMapper;
 import dataSource.mappers.UserMapper;
 import domain.POE;
-import domain.ProjectProposal;
+import domain.Proposal;
 import domain.User;
 import java.sql.Connection;
 
@@ -37,7 +37,7 @@ public class DBFacade {
 	  }
 	  //== Singleton end
 
-    public boolean submitProjectProposal(ProjectProposal projectP) {
+    public boolean submitProjectProposal(Proposal projectP) {
         
         return projectPMapper.submitProjectProposal(projectP, con);
         

@@ -22,15 +22,22 @@ public class Controller {
     
     private static Controller instance;
     private DBFacade dbf;
-    private ProjectProposal projectP;
-    private User ur;
+    private Proposal conProposal;
+    private User conUser;
+    private Project conProject;
+    private POE conPOE;
+    private Admin conAdmin;
+    private Partner conPartner;
     
     private Controller(){
         
        dbf = DBFacade.getInstance();
-       projectP = null;
-       ur = null;
-    
+       conProposal = null;
+       conUser = null;
+       conProject = null;
+       conPOE = null;
+       conAdmin = null;
+       conPartner = null;
     }
     
     public static Controller getInstance(){
@@ -40,21 +47,52 @@ public class Controller {
       return instance;
     
     }
-    //submit project proposal
+    /*
+      the method should return true if the new user is registered successfully
+      in the Database
+    */
+    public boolean registerUser(String login, String password, String fName, String lName, String phone){
+    
+        //create a unique userID ->>>>
+        int userID = 1111;
+        
+        //create a unique partnerID ->>>>
+        int partnerID = 1111;
+        
+        //create a new User object
+        conUser = new User(userID,  login,  password,  partnerID,  fName,  lName,  phone);
+        
+        return dbf.registerUser(conUser);
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//submit project proposal
     public boolean submitProjectProposal(String partnerName, String country, String activity){
         
-        projectP = new ProjectProposal(partnerName, country, activity);
+        conProposal = new Proposal(partnerName, country, activity);
         
         System.out.println("IN controller");
-        System.out.println(projectP);
-        boolean status = dbf.submitProjectProposal(projectP);
+        System.out.println(conProposal);
+        boolean status = dbf.submitProjectProposal(conProposal);
         
         return status;
     }
     
-
-
-//log in
     
     
     

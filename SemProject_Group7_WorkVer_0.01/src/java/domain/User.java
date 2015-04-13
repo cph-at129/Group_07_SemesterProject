@@ -19,6 +19,13 @@ public class User {
         this.phone = phone;
     }
 
+    public User(int userID, String login, String password) {
+        
+        this.userID = userID;
+        this.login = login;
+        this.password = password;
+    }
+
     public User(int userID, String login, String password, int partnerID, String fName, String lName, String phone) {
         this.userID = userID;
         this.login = login;

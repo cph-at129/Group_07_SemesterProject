@@ -66,7 +66,16 @@ public class Controller {
     
     }
 
-
+    public boolean logIn(String login, String password) {
+        
+        //create a method to check if user exist
+        int userID = 1111;
+        
+        conUser = new User(userID, login, password);
+        
+        return dbf.logIn(conUser);
+        
+    }
 
 
 
@@ -142,13 +151,7 @@ public class Controller {
     /*
        the method checks if the user has logged in successfully
      */
-    public boolean logIn(String userID, String password) {
-        
-        User ur = new User(userID, password);
-        
-        return dbf.logIn(ur);
-        
-    }
+    
 
     public boolean submitPOE() {
         

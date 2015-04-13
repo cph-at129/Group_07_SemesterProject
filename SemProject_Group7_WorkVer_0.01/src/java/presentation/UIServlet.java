@@ -37,6 +37,8 @@ public class UIServlet extends HttpServlet {
 
         switch (command) {
 
+            case:"registerUser":
+                registerUser(request, response, con); 
             case "logIn":
                 logIn(request, response, con);
             case "submitNewProjectProposal":
@@ -48,6 +50,15 @@ public class UIServlet extends HttpServlet {
 
 
     }
+    
+    private void registerUser(HttpServletRequest request,
+            HttpServletResponse response,
+            Controller con) throws ServletException, IOException{
+    
+        
+    
+    }
+    
     /*
        the method checks if the user has logged in successfully
      */

@@ -12,6 +12,7 @@
         <title>Dell Template</title>
     </head>
     <body>
+        <p>You logged in successfully!</p><br/>
         <h1>Dell template here!</h1>
     </body>
 </html>

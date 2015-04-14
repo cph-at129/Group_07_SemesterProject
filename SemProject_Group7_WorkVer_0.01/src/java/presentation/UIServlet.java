@@ -104,15 +104,18 @@ public class UIServlet extends HttpServlet {
     }
 
     private void loadDellTemplate(HttpServletRequest request,
-            HttpServletResponse response) {
+            HttpServletResponse response) throws ServletException, IOException{
 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("DellTemplate.jsp");
+        dispatcher.forward(request, response);
+        
     }
     /*
      the method saves the ProjectProposal in the Database
      and checks if it is saved successfuly or not 
      */
 
-    private boolean submitProjectProposal(HttpServletRequest request,
+    private boolean submitProposal(HttpServletRequest request,
             HttpServletResponse response,
             Controller con) throws ServletException, IOException {
 

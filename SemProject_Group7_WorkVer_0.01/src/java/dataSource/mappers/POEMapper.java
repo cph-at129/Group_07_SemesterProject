@@ -4,6 +4,7 @@ package dataSource.mappers;
 import domain.POE;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /*   THIS CLASS IS ORGANIZING THE DATA TRANSPORT
      BETWEEN THE DOMAIN LAYER AND THE DATABASE
@@ -50,9 +51,31 @@ public class POEMapper {
             statement = con.prepareStatement(sqlString);
             
             statement.setInt(1, poe.getPoeID());
+            statement.setInt(2, poe.getPartnerID());
+            statement.setString(3, poe.getSubmissionDate());
+            
+            statement.executeQuery();
+            
+            rowsInserted = statement.executeUpdate();
             
         } catch (Exception e) {
+            
+            System.out.println("Fail1 in POEMapper - submitPOE");
+            System.out.println(e.getMessage());
+        }finally{
+        
+            try {
+                
+                statement.close();
+                
+            } catch (SQLException e) {
+                
+                System.out.println("Fail2 in POEMapper - submitPOE");
+                System.out.println(e.getMessage());
+            }
+        
         }
+        return rowsInserted == 1;
     }
     
 }

@@ -20,7 +20,6 @@ import dataSource.DBFacade;
 
 public class Controller {
     
-    private static Controller instance;
     private DBFacade dbf;
     private Proposal conProposal;
     private User conUser;
@@ -29,7 +28,7 @@ public class Controller {
     private Admin conAdmin;
     private Partner conPartner;
     
-    private Controller(){
+    public Controller(){
         
        dbf = DBFacade.getInstance();
        conProposal = null;
@@ -38,14 +37,6 @@ public class Controller {
        conPOE = null;
        conAdmin = null;
        conPartner = null;
-    }
-    
-    public static Controller getInstance(){
-    
-      if(instance == null)
-         instance = new Controller();
-      return instance;
-    
     }
     /*
       the method should return true if the new user is registered successfully
@@ -57,7 +48,7 @@ public class Controller {
         int userID = 1111;
         
         //create a unique partnerID ->>>>
-        int partnerID = 1111;
+        int partnerID = 11111;
         
         //create a new User object
         conUser = new User(userID,  login,  password,  partnerID,  fName,  lName,  phone);
@@ -163,11 +154,11 @@ public class Controller {
      */
     
 
-    public boolean submitPOE() {
-        
-        POE poe = new POE();
-        
-        return dbf.submitPOE(poe);
-        
-    }
+//    public boolean submitPOE() {
+//        
+//        POE poe = new POE();
+//        
+//        return dbf.submitPOE(poe);
+//        
+//    }
 }

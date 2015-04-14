@@ -27,7 +27,7 @@ public class UIServlet extends HttpServlet {
         Controller con = (Controller) sessionObj.getAttribute("Controller");
         if (con == null) {
             // Session starts
-            con = Controller.getInstance();
+            con = new Controller();
             sessionObj.setAttribute("Controller", con);
         } else {
             con = (Controller) sessionObj.getAttribute("Controller");
@@ -38,43 +38,47 @@ public class UIServlet extends HttpServlet {
         switch (command) {
 
             case "registerUser":
-                registerUser(request, response, con); 
+                registerUser(request, response, con);
+                break;
             case "logIn":
                 logIn(request, response, con);
+                break;
             case "submitNewProjectProposal":
                 submitProjectProposal(request, response, con);
+                break;
             case "submitPOE":
                 submitPOE(request, response, con);
+                break;
         }
-        
-
 
     }
     /*
-      the method should save a new user in the database
+     the method should save a new user in the database
       
-    */
+     */
+
     private void registerUser(HttpServletRequest request,
             HttpServletResponse response,
-            Controller con) throws ServletException, IOException{
-        
+            Controller con) throws ServletException, IOException {
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String fName = request.getParameter("fName");
         String lName = request.getParameter("lName");
         String phone = request.getParameter("phone");
-        
+
         boolean status = con.registerUser(login, password, fName, lName, phone);
-        
-        if(status){
-            //load the Dell or Partner web interface
-        }else{
+
+        if (status) {
+            //load the login page
+            
+        } else {
             //reset the register page
-        }    
+        }
     }
-    
+
     /*
-       the method checks if the user has logged in successfully
+     the method checks if the user has logged in successfully
      */
     private void logIn(HttpServletRequest request,
             HttpServletResponse response,
@@ -82,24 +86,32 @@ public class UIServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        
+
         boolean status = con.logIn(login, password);
-        
-        if(status){
+
+        if (status) {
             //load Dell or Partner information from the Database
             //and dispay it in jsp page
+
+            loadDellTemplate(request, response);
+
             
-        }else{
+
+        } else {
             //reset the login page
         }
-        
-                
+
     }
 
+    private void loadDellTemplate(HttpServletRequest request,
+            HttpServletResponse response) {
+
+    }
     /*
      the method saves the ProjectProposal in the Database
      and checks if it is saved successfuly or not 
      */
+
     private boolean submitProjectProposal(HttpServletRequest request,
             HttpServletResponse response,
             Controller con) throws ServletException, IOException {
@@ -111,33 +123,29 @@ public class UIServlet extends HttpServlet {
         //send the input to the Controller and check the status 
         boolean status = con.submitProjectProposal(partnerName, country, activity);
 
-        request.setAttribute("partnerName", partnerName);
-        request.setAttribute("country", country);
-        request.setAttribute("activity", activity);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("SubmittedProjectProposal.jsp");
-        dispatcher.forward(request, response);
         return status;
     }
-    
+
     /*
-      the method saves the POE in the Database 
-      and checks if it's saved successfully or not
-    */
+     the method saves the POE in the Database 
+     and checks if it's saved successfully or not
+     */
     private boolean submitPOE(HttpServletRequest request,
             HttpServletResponse response,
-            Controller con) throws ServletException, IOException{
-    
-        boolean status = con.submitPOE();
-    
+            Controller con) throws ServletException, IOException {
+
+        //boolean status = con.submitPOE();
+        return true;
     }
-    
+
     private boolean submitDocuments(HttpServletRequest request,
             HttpServletResponse response,
-            Controller con) throws ServletException, IOException{
-    
-        boolean status = con.submitDocuments();
-    
+            Controller con) throws ServletException, IOException {
+
+        //boolean status = con.submitDocuments();
+        return true;
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

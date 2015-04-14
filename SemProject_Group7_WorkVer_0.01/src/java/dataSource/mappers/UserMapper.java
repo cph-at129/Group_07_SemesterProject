@@ -12,9 +12,12 @@ public class UserMapper {
     
         int rowsInserted = 0;
         
+        System.out.println("In User Mapper ->>>>>>>>>>>>>>");
+        System.out.println(ur.toString1());
+        
         String sqlString = 
                 "INSERT INTO user_"
-                + "VALUES (?,?,?,?,?,?,?)";
+                + " VALUES (?,?,?,?,?,?,?)";
         
         PreparedStatement statement = null;
         
@@ -57,7 +60,7 @@ public class UserMapper {
         
         //check if the userID exist in the database
         
-        
+        return true;
         
     }
     

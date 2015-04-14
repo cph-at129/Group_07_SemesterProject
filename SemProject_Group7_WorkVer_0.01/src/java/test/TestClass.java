@@ -9,7 +9,7 @@ public class TestClass {
     
     public static void main(String[] args) {
         
-        con = Controller.getInstance();
+        con = new Controller();
         con.submitProjectProposal("111", "111", "111");
         
     }

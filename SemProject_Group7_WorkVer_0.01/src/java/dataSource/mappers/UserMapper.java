@@ -11,6 +11,7 @@ public class UserMapper {
     public boolean registerUser(User ur, Connection con) {
 
         int rowsInserted = 0;
+        
 
         System.out.println("In User Mapper ->>>>>>>>>>>>>>");
         System.out.println(ur.toString1());
@@ -58,9 +59,11 @@ public class UserMapper {
 
     public boolean logIn(User ur, Connection con) {
 
+        User userDetails = null;
+        
         //check if the userID exist in the database
         String sqlString
-                = "SELECT u.userID "
+                = "SELECT * "
                 + "FROM user_ u "
                 + "WHERE u.login = ? ";
 
@@ -73,12 +76,16 @@ public class UserMapper {
             statement.setString(1, ur.getLogin());
             ResultSet rs = statement.executeQuery();
 
-            if (rs == null) {
-
-                //login does not exist
-                return false;
-
+            while(rs.next()){
+            
+                userDetails = new User(
+                        rs.getInt(1), 
+                        rs.getString(2),
+                        rs.getString(3));
+            
             }
+            
+            
         } catch (Exception e) {
 
             System.out.println("Fail in UserMapper - logIn");

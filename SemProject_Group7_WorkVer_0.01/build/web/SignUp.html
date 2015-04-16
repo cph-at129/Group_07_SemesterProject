@@ -6,33 +6,81 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>SignUp</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Registration</title>
+        
     </head>
-    <body>
-        <div>
-            <h1>Sign Up Template</h1><br/>
-            <br/>
+    <body bgcolor="f0f0f0">
+        
+        <table cellpadding="10" width="700">
+            <center>
+                <caption align ="Top">
+                    <h1> User Registration Form</h1>
+                </caption>
+            </center>
+           
             <form action="UIServlet">
-            <p>Login Name</p><br/>
-            <input type="text" name="login"/>
-            <br/>
-            <p>Choose password</p><br/>
-            <input type="password" name="password"/>
-            <br/>
-            <p>First Name</p><br/>
-            <input type="text" name="fName"/>
-            <br/>
-            <p>Last Name</p><br/>
-            <input type="text" name="lName"/>
-            <br/>
-            <p>Phone</p><br/>
-            <input type="text" name="phone"/>
-            <br/>
-            <input type="hidden" name="command" value="registerUser"/>
-            <input type="submit" name="signUpButton" value="Sign up"/>
+                <tr>
+                    <td>Username : </td>
+                    <td><input type="text" name="login" size="30" maxlength="30"
+                               placeholder="Enter your fullname">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password :</td>
+                    <td><input type="password" name="password" size="20" placeholder="Password">
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>First Name :</td>
+                    <td><input type="text" name="fName" size="30" maxlength="30" placeholder="First name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name :</td>
+                    <td><input type="text" name="lName" size="30" maxlength="30" placeholder="Last name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone :</td>
+                    <td>
+                        <input type="text" name="phone" size="30" maxlength="30" placeholder="Phone number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Position in Dell</td>
+                    <td><select name="ID">
+                            <option>Select</option>
+                            <option>Dell employee</option>
+                            <option>Dell partner</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                        <td>&nbsp;</td>  
+                        <td>
+                            <input type="hidden" name="command" value="registerUser"/>
+                            <input type="submit" value="Submit"/>
+                        </td>
+                </tr>
             </form>
-        </div>
+        </table>
     </body>
+</html>
+
+    
+                                 
+                    
+                    
+                    
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                    
+                    
 </html>

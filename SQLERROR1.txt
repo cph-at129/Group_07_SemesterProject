@@ -1,0 +1,16 @@
+ORA-00001: unique constraint (CPHAT129.SYS_C00411644) violated
+
+Solution:
+
+CREATE SEQUENCE test_sequence
+START WITH 1
+INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER test_trigger
+BEFORE INSERT
+ON user_
+REFERENCING NEW AS NEW
+FOR EACH ROW
+BEGIN
+SELECT test_sequence.nextval INTO :NEW.ID FROM dual;
+END;

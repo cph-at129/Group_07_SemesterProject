@@ -45,7 +45,7 @@ public class Controller {
     public boolean registerUser(String login, String password, String fName, String lName, String phone){
     
         //create a unique userID ->>>>
-        int userID = 1111;
+        int userID = 1113;
         
         //create a unique partnerID ->>>>
         int partnerID = 11111;

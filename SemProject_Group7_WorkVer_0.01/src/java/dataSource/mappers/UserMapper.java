@@ -11,21 +11,18 @@ public class UserMapper {
     public boolean registerUser(User ur, Connection con) {
 
         int rowsInserted = 0;
-        
-
-        System.out.println("In User Mapper ->>>>>>>>>>>>>>");
-        System.out.println(ur.toString1());
 
         String sqlString
                 = "INSERT INTO user_"
                 + " VALUES (?,?,?,?,?,?,?)";
 
         PreparedStatement statement = null;
-
+        System.out.println(ur.toString());
         try {
 
             statement = con.prepareStatement(sqlString);
-
+          
+            
             statement.setInt(1, ur.getUserID());
             statement.setString(2, ur.getLogin());
             statement.setString(3, ur.getPassword());
@@ -46,7 +43,8 @@ public class UserMapper {
         } finally {
 
             try {
-                statement.close();
+                    statement.close();
+                    
             } catch (SQLException e) {
 
                 System.out.println("Fail2 in UserMapper - registerUser");
@@ -59,8 +57,10 @@ public class UserMapper {
 
     public boolean logIn(User ur, Connection con) {
 
+        boolean correct = false;
+
         User userDetails = null;
-        
+
         //check if the userID exist in the database
         String sqlString
                 = "SELECT * "
@@ -76,16 +76,26 @@ public class UserMapper {
             statement.setString(1, ur.getLogin());
             ResultSet rs = statement.executeQuery();
 
-            while(rs.next()){
-            
+            while (rs.next()) {
+
                 userDetails = new User(
-                        rs.getInt(1), 
+                        rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3));
-            
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7)
+                );
+
             }
-            
-            
+            if (!ur.getPassword().isEmpty() && !userDetails.getPassword().isEmpty()) {
+                if (ur.getPassword().equals(userDetails.getPassword())) {
+
+                    correct = true;
+                }
+            }
+
         } catch (Exception e) {
 
             System.out.println("Fail in UserMapper - logIn");
@@ -103,7 +113,7 @@ public class UserMapper {
             }
 
         }
-        return true;
+        return correct;
     }
 
 }

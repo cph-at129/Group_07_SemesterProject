@@ -44,7 +44,7 @@ public class UIServlet extends HttpServlet {
                 logIn(request, response, con);
                 break;
             case "submitNewProjectProposal":
-                submitProjectProposal(request, response, con);
+                submitProposal(request, response, con);
                 break;
             case "submitPOE":
                 submitPOE(request, response, con);
@@ -71,9 +71,11 @@ public class UIServlet extends HttpServlet {
 
         if (status) {
             //load the login page
-            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.html");
+            dispatcher.forward(request, response);
         } else {
-            //reset the register page
+            RequestDispatcher dispatcher = request.getRequestDispatcher("IncorrectSignUp.html");
+            dispatcher.forward(request, response);
         }
     }
 
@@ -98,7 +100,10 @@ public class UIServlet extends HttpServlet {
             
 
         } else {
-            //reset the login page
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("IncorrectLogIn.html");
+            dispatcher.forward(request, response);
+            
         }
 
     }

@@ -10,8 +10,10 @@ public class Project {
     private String endDate;
     private int budget;
     private int partnerID;
+    private String type;
+    private int qbid;
     private String completed;
-
+    
     public Project(String projectName, String startDate, String endDate, int budget, String completed) {
         this.projectName = projectName;
         this.startDate = startDate;
@@ -20,16 +22,35 @@ public class Project {
         this.completed = completed;
     }
 
-    public Project(int projectID, String projectName, String startDate, String endDate, int budget, int partnerID, String completed) {
+    public Project(int projectID, String projectName, String startDate, String endDate,
+            int budget, int partnerID, String type,int qbid, String completed) {
         this.projectID = projectID;
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
         this.partnerID = partnerID;
+        this.type = type;
+        this.qbid = qbid;
         this.completed = completed;
     }
 
+    public int getQbid() {
+        return qbid;
+    }
+
+    public void setQbid(int qbid) {
+        this.qbid = qbid;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
     public int getPartnerID() {
         return partnerID;
     }
@@ -90,7 +111,8 @@ public class Project {
     @Override
     public String toString(){
     
-        return  projectID + "  " + projectName + "  " +  startDate + "  " +  endDate + "  " + budget + "  "  + partnerID + "  " + completed;
+        return  projectID + "  " + projectName + "  " +  startDate + "  " +  endDate 
+                + "  " + budget + "  "  + partnerID + "  " + type + "  " + qbid + "  " + completed;
      
     }
     public String toString1(){

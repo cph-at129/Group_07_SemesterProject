@@ -7,8 +7,10 @@
  */
 package presentation;
 
-import domain.Controller;
+import domain.Project;
+import domain.controller.Controller;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,8 +39,8 @@ public class UIServlet extends HttpServlet {
 
         switch (command) {
 
-            case "registerUser":
-                registerUser(request, response, con);
+            case "registerNewPartner":
+                registerNewPartner(request, response, con);
                 break;
             case "logIn":
                 logIn(request, response, con);
@@ -49,26 +51,61 @@ public class UIServlet extends HttpServlet {
             case "submitPOE":
                 submitPOE(request, response, con);
                 break;
+            case "viewNewProjects":
+                viewNewProjects(request, response, con);
+                break;
+            case "registerDellEmployee":
+                registerDellEmployee(request, response, con);
         }
 
     }
-    /*
-     the method should save a new user in the database
-      
-     */
-
-    private void registerUser(HttpServletRequest request,
-            HttpServletResponse response,
-            Controller con) throws ServletException, IOException {
-
+    private void registerDellEmployee(HttpServletRequest request, HttpServletResponse response, Controller con)
+            throws ServletException, IOException{
+    
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String fName = request.getParameter("fName");
         String lName = request.getParameter("lName");
         String phone = request.getParameter("phone");
+        
+        boolean status = con.registerDellEmployee(login, password, fName, lName, phone);
+        
+    
+    }
+    
+    private void viewNewProjects(HttpServletRequest request, HttpServletResponse response, Controller con)
+            throws ServletException, IOException{
+    
+        //get projects in a collection
+        ArrayList<Project> projectsList = con.getProjects();
+        
+        request.setAttribute("projectsList", projectsList);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("DellTemplate_ShowNewProjects.jsp");
+        dispatcher.forward(request, response);
+    
+    }
+    
+    /*
+     the method should save a new user in the database
+      
+     */
 
-        boolean status = con.registerUser(login, password, fName, lName, phone);
+    private void registerNewPartner(HttpServletRequest request,
+            HttpServletResponse response,
+            Controller con) throws ServletException, IOException {
+        
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String fName = request.getParameter("fName");
+        String lName = request.getParameter("lName");
+        String companyName = request.getParameter("companyName");
+        String country = request.getParameter("country");
+        String phone = request.getParameter("phone");
+        
+        boolean status = con.registerNewPartner(login, password, fName, lName, companyName, country, phone);
 
+        
         if (status) {
             //load the login page
             RequestDispatcher dispatcher = request.getRequestDispatcher("LogIn.html");
@@ -88,7 +125,20 @@ public class UIServlet extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-
+        
+        if(login.equals("admin")){
+        
+            boolean status = con.logInAsAdmin(login, password);
+            
+            if(status){
+            
+                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminTemplate.html");
+                dispatcher.forward(request, response);
+            
+            }
+        
+        }
+        
         boolean status = con.logIn(login, password);
 
         if (status) {
@@ -129,10 +179,9 @@ public class UIServlet extends HttpServlet {
         String activity = request.getParameter("activity");
 
         //send the input to the Controller and check the status 
-        boolean status = con.submitProjectProposal(partnerName, country, activity);
-
-
-        return status;
+        //boolean status = con.submitProjectProposal(partnerName, country, activity);
+        
+        return true;
     }
 
     /*

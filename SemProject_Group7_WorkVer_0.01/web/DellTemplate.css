@@ -1,0 +1,14 @@
+.nav{
+  color: #5a5a5a;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+.header{
+    color: green;
+    border: 3px solid #ffffff;
+    margin-right: auto;
+    margin-left: auto;
+}
+

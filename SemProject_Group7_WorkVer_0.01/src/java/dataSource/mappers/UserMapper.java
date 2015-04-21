@@ -14,22 +14,28 @@ public class UserMapper {
 
         String sqlString
                 = "INSERT INTO user_"
-                + " VALUES (?,?,?,?,?,?,?)";
+                + " VALUES ( seq_user.nextval, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement statement = null;
+
         System.out.println(ur.toString());
+        
         try {
 
             statement = con.prepareStatement(sqlString);
           
+            statement.setString(1, ur.getLogin());
+            statement.setString(2, ur.getPassword());
             
-            statement.setInt(1, ur.getUserID());
-            statement.setString(2, ur.getLogin());
-            statement.setString(3, ur.getPassword());
-            statement.setInt(4, ur.getPartnerID());
-            statement.setString(5, ur.getfName());
-            statement.setString(6, ur.getlName());
-            statement.setString(7, ur.getPhone());
+            if(ur.getPartnerID() == 0)
+                statement.setObject(3, null);
+            else
+               statement.setInt(3, ur.getPartnerID()); 
+            
+            statement.setString(4, ur.getfName());
+            statement.setString(5, ur.getlName());
+            statement.setString(6, ur.getPhone());
+            statement.setString(7, ur.getType());
 
             statement.executeQuery();
 
@@ -53,6 +59,52 @@ public class UserMapper {
 
         }
         return rowsInserted == 1;
+    }
+    public boolean registerDellEmployee(User ur, Connection con){
+    
+        int rowsInserted = 0;
+
+        String sqlString
+                = "INSERT INTO user_"
+                + " VALUES ( seq_user.nextval, ?, ?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement statement = null;
+                try {
+
+            statement = con.prepareStatement(sqlString);
+          
+            
+            statement.setString(1, ur.getLogin());
+            statement.setString(2, ur.getPassword());
+            statement.setInt(3, ur.getPartnerID());
+            statement.setString(4, ur.getfName());
+            statement.setString(5, ur.getlName());
+            statement.setString(6, ur.getPhone());
+            statement.setString(7, ur.getType());
+
+            statement.executeQuery();
+
+            rowsInserted = statement.executeUpdate();
+
+        } catch (Exception e) {
+
+            System.out.println("Fail1 in UserMapper - registerDellEmployee");
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            try {
+                    statement.close();
+                    
+            } catch (SQLException e) {
+
+                System.out.println("Fail2 in UserMapper - registerDellEmployee");
+                System.out.println(e.getMessage());
+            }
+
+        }
+        return rowsInserted == 1;
+    
     }
 
     public boolean logIn(User ur, Connection con) {
@@ -85,7 +137,8 @@ public class UserMapper {
                         rs.getInt(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getString(7)
+                        rs.getString(7),
+                        rs.getString(8)
                 );
 
             }

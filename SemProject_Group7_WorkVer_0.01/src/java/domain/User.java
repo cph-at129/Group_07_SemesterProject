@@ -10,23 +10,24 @@ public class User {
     private String fName;
     private String lName;
     private String phone;
+    private String type;
 
-    public User(String login, String password, String fName, String lName, String phone) {
+    public User(String login, String password, String fName, String lName, String phone, String type) {
         this.login = login;
         this.password = password;
         this.fName = fName;
         this.lName = lName;
         this.phone = phone;
+        this.type = type;
     }
 
-    public User(int userID, String login, String password) {
+    public User(String login, String password) {
         
-        this.userID = userID;
         this.login = login;
         this.password = password;
     }
 
-    public User(int userID, String login, String password, int partnerID, String fName, String lName, String phone) {
+    public User(int userID, String login, String password, int partnerID, String fName, String lName, String phone, String type) {
         this.userID = userID;
         this.login = login;
         this.password = password;
@@ -34,6 +35,15 @@ public class User {
         this.fName = fName;
         this.lName = lName;
         this.phone = phone;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getUserID() {

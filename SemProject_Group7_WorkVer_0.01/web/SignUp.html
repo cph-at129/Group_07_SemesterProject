@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>User Registration</title>
+        <title>New Partner Registration</title>
         
     </head>
     <body bgcolor="f0f0f0">
@@ -14,7 +14,7 @@ and open the template in the editor.
         <table cellpadding="10" width="700">
             <center>
                 <caption align ="Top">
-                    <h1> User Registration Form</h1>
+                    <h1> New Partner registration</h1>
                 </caption>
             </center>
            
@@ -22,45 +22,45 @@ and open the template in the editor.
                 <tr>
                     <td>Username : </td>
                     <td><input type="text" name="login" size="30" maxlength="30"
-                               placeholder="Enter your fullname">
+                               placeholder="User name"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Password :</td>
-                    <td><input type="password" name="password" size="20" placeholder="Password">
+                    <td><input type="password" name="password" size="20" placeholder="Password"/>
                     </td>
                     
                 </tr>
                 <tr>
                     <td>First Name :</td>
-                    <td><input type="text" name="fName" size="30" maxlength="30" placeholder="First name">
+                    <td><input type="text" name="fName" size="30" maxlength="30" placeholder="First name"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Last Name :</td>
-                    <td><input type="text" name="lName" size="30" maxlength="30" placeholder="Last name">
+                    <td><input type="text" name="lName" size="30" maxlength="30" placeholder="Last name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Company Name :</td>
+                    <td><input type="text" name="companyName" size="30" maxlength="30" placeholder="Company name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country :</td>
+                    <td><input type="text" name="country" size="30" maxlength="30" placeholder="Country"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Phone :</td>
                     <td>
-                        <input type="text" name="phone" size="30" maxlength="30" placeholder="Phone number">
+                        <input type="text" name="phone" size="30" maxlength="30" placeholder="Phone number"/>
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        Position in Dell</td>
-                    <td><select name="ID">
-                            <option>Select</option>
-                            <option>Dell employee</option>
-                            <option>Dell partner</option>
-                        </select>
-                    </td>
-                </tr>
+                </tr>              
                 <tr>
                         <td>&nbsp;</td>  
                         <td>
-                            <input type="hidden" name="command" value="registerUser"/>
+                            <input type="hidden" name="command" value="registerNewPartner"/>
                             <input type="submit" value="Submit"/>
                         </td>
                 </tr>

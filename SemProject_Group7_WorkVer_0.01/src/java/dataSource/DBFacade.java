@@ -1,13 +1,14 @@
 
 package dataSource;
 
-import dataSource.mappers.POEMapper;
-import dataSource.mappers.ProposalMapper;
+import dataSource.mappers.PartnerMapper;
+import dataSource.mappers.ProjectMapper;
 import dataSource.mappers.UserMapper;
-import domain.POE;
-import domain.Proposal;
+import domain.Partner;
+import domain.Project;
 import domain.User;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /*
    - provides a facade to the Data Source Layer
@@ -16,17 +17,19 @@ import java.sql.Connection;
 */
 
 public class DBFacade {
-          private ProposalMapper projectMapper;
+
           private UserMapper userMapper;
-          private POEMapper poeMapper;
+          private PartnerMapper partnerMapper;
+          private ProjectMapper projectMapper;
 	  private Connection con;
 	  
 	  //== Singleton start
 	  private static DBFacade instance;
 	 
 	  private DBFacade() {
-                  projectMapper = new ProposalMapper();
+                  partnerMapper = new PartnerMapper();
                   userMapper = new UserMapper();
+                  projectMapper = new ProjectMapper();
 		  con 	= DBConnector.getInstance().getConnection();  		  
 	  }
 	  public static DBFacade getInstance()
@@ -35,30 +38,34 @@ public class DBFacade {
 			  instance = new DBFacade();
 		  return instance;
 	  }
-	  //== Singleton end
-
-    public boolean submitProjectProposal(Proposal projectP) {
-        
-        return projectMapper.submitProjectProposal(projectP, con);
-        
-    }
 
     public boolean logIn(User ur) {
         
         return userMapper.logIn(ur, con);
         
     }
-
-    public boolean submitPOE(POE poe) {
-        
-        return poeMapper.submitPOE(poe, con);
-        
+    
+    public boolean registerPartner(Partner dbfPartner){
+    
+        return partnerMapper.registerPartner(dbfPartner, con);
+    
     }
 
     public boolean registerUser(User dbfUser) {
         
         return userMapper.registerUser(dbfUser, con);
         
+    }
+    public boolean registerDellEmployee(User dbfUser){
+    
+        return userMapper.registerDellEmployee(dbfUser, con);
+    
+    }
+    
+    public ArrayList<Project> getProjects(){
+    
+        return projectMapper.getProjects(con);
+    
     }
     
 }

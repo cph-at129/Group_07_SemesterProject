@@ -7,19 +7,18 @@ public class Partner {
     private int partnerID;
     private String companyName;
     private String country;
-    private String address;
 
-    public Partner(String companyName, String country, String address) {
+    public Partner(String companyName, String country) {
         this.companyName = companyName;
         this.country = country;
-        this.address = address;
+
     }
 
-    public Partner(int partnerID, String companyName, String country, String address) {
+    public Partner(int partnerID, String companyName, String country) {
         this.partnerID = partnerID;
         this.companyName = companyName;
         this.country = country;
-        this.address = address;
+
     }
 
     public int getPartnerID() {
@@ -46,23 +45,15 @@ public class Partner {
         this.country = country;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    
     @Override
     public String toString(){
     
-        return  partnerID + "  " +  companyName + "  " +  country + "  " + address;
+        return  partnerID + "  " +  companyName + "  " +  country;
      
     }
     public String toString1(){
     
-        return  companyName + "  " +  country + "  " + address;
+        return  companyName + "  " +  country;
      
     }
     

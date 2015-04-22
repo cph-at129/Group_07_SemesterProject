@@ -19,19 +19,20 @@ public class UserMapper {
         PreparedStatement statement = null;
 
         System.out.println(ur.toString());
-        
+
         try {
 
             statement = con.prepareStatement(sqlString);
-          
+
             statement.setString(1, ur.getLogin());
             statement.setString(2, ur.getPassword());
-            
-            if(ur.getPartnerID() == 0)
+
+            if (ur.getPartnerID() == 0) {
                 statement.setObject(3, null);
-            else
-               statement.setInt(3, ur.getPartnerID()); 
-            
+            } else {
+                statement.setInt(3, ur.getPartnerID());
+            }
+
             statement.setString(4, ur.getfName());
             statement.setString(5, ur.getlName());
             statement.setString(6, ur.getPhone());
@@ -49,8 +50,8 @@ public class UserMapper {
         } finally {
 
             try {
-                    statement.close();
-                    
+                statement.close();
+
             } catch (SQLException e) {
 
                 System.out.println("Fail2 in UserMapper - registerUser");
@@ -60,8 +61,9 @@ public class UserMapper {
         }
         return rowsInserted == 1;
     }
-    public boolean registerDellEmployee(User ur, Connection con){
-    
+
+    public boolean registerDellEmployee(User ur, Connection con) {
+
         int rowsInserted = 0;
 
         String sqlString
@@ -69,14 +71,17 @@ public class UserMapper {
                 + " VALUES ( seq_user.nextval, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement statement = null;
-                try {
+        try {
 
             statement = con.prepareStatement(sqlString);
-          
-            
+
             statement.setString(1, ur.getLogin());
             statement.setString(2, ur.getPassword());
-            statement.setInt(3, ur.getPartnerID());
+            if (ur.getPartnerID() == 0) {
+                statement.setObject(3, null);
+            } else {
+                statement.setInt(3, ur.getPartnerID());
+            }
             statement.setString(4, ur.getfName());
             statement.setString(5, ur.getlName());
             statement.setString(6, ur.getPhone());
@@ -94,8 +99,8 @@ public class UserMapper {
         } finally {
 
             try {
-                    statement.close();
-                    
+                statement.close();
+
             } catch (SQLException e) {
 
                 System.out.println("Fail2 in UserMapper - registerDellEmployee");
@@ -104,7 +109,7 @@ public class UserMapper {
 
         }
         return rowsInserted == 1;
-    
+
     }
 
     public boolean logIn(User ur, Connection con) {
@@ -169,4 +174,70 @@ public class UserMapper {
         return correct;
     }
 
+    public boolean logInAsPartner(User ur, Connection con) {
+
+        boolean status = false;
+
+        User userDetails = null;
+
+        //check if the userID exist in the database
+        String sqlString
+                = "SELECT * "
+                + "FROM user_ u "
+                + "WHERE u.login = ? ";
+
+        String sqlString1
+                = "SELECT u.type "
+                + "FROM user_ u "
+                + "WHERE u.login = ? ";
+
+        PreparedStatement statement = null;
+
+        try {
+
+            statement = con.prepareStatement(sqlString);
+
+            statement.setString(1, ur.getLogin());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+
+                userDetails = new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+
+            }
+            if (!ur.getPassword().isEmpty() && !userDetails.getPassword().isEmpty()) {
+                if (ur.getPassword().equals(userDetails.getPassword())) {
+                    if (userDetails.getType().equals("Partner")) {
+                        status = true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+
+            System.out.println("Fail in UserMapper - logInAsPartner");
+            System.out.println(e.getMessage());
+        } finally {
+
+            try {
+
+                statement.close();
+
+            } catch (SQLException e) {
+
+                System.out.println("Fail2 in UserMapper - logInAsPartner");
+                System.out.println(e.getMessage());
+            }
+
+        }
+        return status;
+    }
 }

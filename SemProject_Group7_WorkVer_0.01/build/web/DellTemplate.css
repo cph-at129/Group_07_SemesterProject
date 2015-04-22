@@ -1,14 +1,158 @@
-.nav{
-  color: #5a5a5a;
-  font-size: 11px;
-  font-weight: bold;
-  padding: 14px 10px;
-  text-transform: uppercase;
-}
-.header{
-    color: green;
-    border: 3px solid #ffffff;
-    margin-right: auto;
-    margin-left: auto;
+body{
+font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  text-align: center;
+  background: white;
 }
 
+#container{
+
+margin-left:auto;
+margin-right:auto;
+width:1500px;
+padding-top:25px;
+
+}
+
+#topbar{
+background-color:#0085C3;
+color:white;
+height:50px;
+padding:10px;
+width:1500px;
+}
+
+#topbarL{
+float:left;
+width:50px;
+text-align: center;
+padding-right:10px;
+
+}
+
+#topbarR{
+float:left;
+width:450px;
+font-size:16px;
+}
+
+#content{
+height: auto;
+font-size:40px;
+text-align: center;
+min-height: 600px;
+}
+
+#contentL{
+float:left;
+width:750px;
+text-align:center;
+}
+
+#contentR{
+float:left;
+width:750px;
+text-align:center;
+}
+
+#footer{
+background-color:#0085C3;
+color:white;
+padding:10px;
+text-align:center;
+margin-bottom: auto;
+}
+
+.option{
+float:left;
+min-width:50px;
+height:50px;
+font-size:18px;
+padding:10px;
+text-align:center;
+}
+
+.option:hover{
+cursor:pointer;
+background-color:#FF8C00;
+}
+
+
+
+
+ul {
+  text-align: left;
+  display: inline;
+  margin: 0;
+  padding: 15px 4px 17px 0;
+  list-style: none;
+}
+ul li {
+  font: bold 12px/18px sans-serif;
+  display: inline-block;
+  margin-right: -4px;
+  position: relative;
+  padding: 15px 20px;
+  background: #0085C3;
+    color: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+ul li:hover {
+  background: #FF8C00;
+  color: #fff;
+}
+ul li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 150px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+ul li ul li { 
+  background: #FF8C00; 
+  display: block; 
+  color: #fff;
+  text-shadow: 0 -1px 0 #000;
+}
+ul li ul li:hover { background: #404040; }
+ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+a:link {
+    text-decoration: none;
+	color:white;
+}
+
+a:visited {
+    text-decoration: none;
+	color:white;
+}
+
+a:hover {
+    text-decoration: none;
+	color:white;
+}
+
+a:active {
+    text-decoration: none;
+	color:white;
+}

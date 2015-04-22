@@ -44,6 +44,11 @@ public class DBFacade {
         return userMapper.logIn(ur, con);
         
     }
+    public boolean logInAsPartner(User ur) {
+        
+        return userMapper.logInAsPartner(ur, con);
+        
+    }
     
     public boolean registerPartner(Partner dbfPartner){
     

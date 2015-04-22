@@ -45,8 +45,8 @@ public class UIServlet extends HttpServlet {
             case "logIn":
                 logIn(request, response, con);
                 break;
-            case "submitNewProjectProposal":
-                submitProposal(request, response, con);
+            case "createNewProject":
+                createNewProject(request, response, con);
                 break;
             case "submitPOE":
                 submitPOE(request, response, con);
@@ -128,9 +128,9 @@ public class UIServlet extends HttpServlet {
         
         if(login.equals("admin")){
         
-            boolean status = con.logInAsAdmin(login, password);
+            boolean statusAdmin = con.logInAsAdmin(login, password);
             
-            if(status){
+            if(statusAdmin){
             
                 RequestDispatcher dispatcher = request.getRequestDispatcher("AdminTemplate.html");
                 dispatcher.forward(request, response);
@@ -138,10 +138,18 @@ public class UIServlet extends HttpServlet {
             }
         
         }
+        boolean statusPartner = con.logInAsPartner(login, password);
         
-        boolean status = con.logIn(login, password);
+        if(statusPartner){
+        
+            RequestDispatcher dispatcher = request.getRequestDispatcher("PartnerTemplate.html");
+            dispatcher.forward(request, response);
+        
+        }
+        
+        boolean statusDell = con.logIn(login, password);
 
-        if (status) {
+        if (statusDell) {
             //load Dell or Partner information from the Database
             //and dispay it in jsp page
 
@@ -161,7 +169,7 @@ public class UIServlet extends HttpServlet {
     private void loadDellTemplate(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException{
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("DellTemplate.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("DellPage.html");
         dispatcher.forward(request, response);
         
     }
@@ -170,13 +178,11 @@ public class UIServlet extends HttpServlet {
      and checks if it is saved successfuly or not 
      */
 
-    private boolean submitProposal(HttpServletRequest request,
+    private boolean createNewProject(HttpServletRequest request,
             HttpServletResponse response,
             Controller con) throws ServletException, IOException {
 
-        String partnerName = request.getParameter("partnerName");
-        String country = request.getParameter("country");
-        String activity = request.getParameter("activity");
+        
 
         //send the input to the Controller and check the status 
         //boolean status = con.submitProjectProposal(partnerName, country, activity);

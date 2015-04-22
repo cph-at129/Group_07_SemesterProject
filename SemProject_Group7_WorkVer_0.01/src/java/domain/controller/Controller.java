@@ -35,7 +35,7 @@ public class Controller {
     private Partner conPartner;
 
     public Controller() {
-       
+
         dbf = DBFacade.getInstance();
         conProposal = null;
         conUser = null;
@@ -57,49 +57,65 @@ public class Controller {
         conPartner = new Partner(companyName, country);
 
         boolean status = dbf.registerPartner(conPartner);
-        
+
         if (status) {
 
             PasswordEncryptor pe = new PasswordEncryptor();
             String encryptedPassword = pe.encryptPassword_SHA1(password);
 
-            conUser = new User( login, encryptedPassword, fName, lName, phone, type);
+            conUser = new User(login, encryptedPassword, fName, lName, phone, type);
 
             status = dbf.registerUser(conUser);
         }
         return status;
 
     }
-    public boolean registerDellEmployee(String login, String password, String fName, String lName, String phone){
-    
+
+    public boolean registerDellEmployee(String login, String password, String fName, String lName, String phone) {
+
         String type = "Dell";
         
-        conUser = new User(login, password, fName, lName, phone, type);
-        
+        PasswordEncryptor pe = new PasswordEncryptor();
+        String encryptedPassword = pe.encryptPassword_SHA1(password);
+
+        conUser = new User(login, encryptedPassword, fName, lName, phone, type);
+
         return dbf.registerDellEmployee(conUser);
-    
+
     }
 
     public boolean logIn(String login, String password) {
 
-            PasswordEncryptor pe = new PasswordEncryptor();
-            String encryptedPassword = pe.encryptPassword_SHA1(password);
-        
+        PasswordEncryptor pe = new PasswordEncryptor();
+        String encryptedPassword = pe.encryptPassword_SHA1(password);
+
         conUser = new User(login, encryptedPassword);
 
         return dbf.logIn(conUser);
 
     }
-    public boolean logInAsAdmin(String login, String password){
-    
+
+    public boolean logInAsAdmin(String login, String password) {
+
         return logIn(login, password);
-    
+
     }
-    
-    public ArrayList<Project> getProjects(){
-    
+
+    public boolean logInAsPartner(String login, String password) {
+
+        PasswordEncryptor pe = new PasswordEncryptor();
+        String encryptedPassword = pe.encryptPassword_SHA1(password);
+
+        conUser = new User(login, encryptedPassword);
+
+        return dbf.logInAsPartner(conUser);
+
+    }
+
+    public ArrayList<Project> getProjects() {
+
         return dbf.getProjects();
-    
+
     }
 
 ////submit project proposal

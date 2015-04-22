@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Dell Template</title>
+        <meta name="description" content="Dell web application for work with partners" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="author" content="wookash" />
+
+        <link rel="stylesheet" type="text/css" href="DellTemplate.css" />
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="topbar">
+                <div id="topbarL">
+                    <a href="index.html"><img src="imgs\logo.png" /></a>
+                </div>
+                <div id="topbarR">
+                    <form action="UIServlet">
+                    <ul>
+                        <li>
+                            Projects
+                            <ul>
+                                <li>
+                                    <input type="hidden" name="command" value="viewNewProjects"/>
+                                    <input type="submit" name="viewNewProjectsButton" value="Review New Projects"/>
+                                </li>
+                                <li>
+                                    <input type="hidden" name="command" value="viewPendingPOE"/>
+                                    <input type="submit" name="seePendingPOEButton" value="Review Pending POEs"/>
+                                </li>
+                                <li>
+                                    <input type="hidden" name="command" value="viewAllProjects"/>
+                                    <input type="submit" name="viewAllProjectsButton" value="View All Projects"/>
+                                </li>
+                            </ul>
+                        </li> 
+                    </ul>
+                  </form>      
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div id="content">
+                Welcome to our new platform!
+            </div>
+            <div id="footer">
+                Footer example &copy; All rights reserved.
+            </div>
+        </div>
+    </body>
+</html>

@@ -9,7 +9,7 @@ public class test {
         
         Controller con = new Controller();
         
-        boolean status = con.logInAsAdmin("admin", "admin");
+       boolean status = con.createNewProject("Project1", 1000000, "partner1");
         
         System.out.println(status);
    }

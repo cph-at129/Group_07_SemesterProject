@@ -22,6 +22,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "UIServlet", urlPatterns = {"/UIServlet"})
 public class UIServlet extends HttpServlet {
 
+    private String currentUser = "";//variable to keep track of who is logged in 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -47,9 +49,6 @@ public class UIServlet extends HttpServlet {
                 break;
             case "createNewProject":
                 createNewProject(request, response, con);
-                break;
-            case "submitPOE":
-                submitPOE(request, response, con);
                 break;
             case "viewNewProjects":
                 viewNewProjects(request, response, con);
@@ -126,6 +125,8 @@ public class UIServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         
+        currentUser = login;
+        
         if(login.equals("admin")){
         
             boolean statusAdmin = con.logInAsAdmin(login, password);
@@ -178,37 +179,24 @@ public class UIServlet extends HttpServlet {
      and checks if it is saved successfuly or not 
      */
 
-    private boolean createNewProject(HttpServletRequest request,
+    private void createNewProject(HttpServletRequest request,
             HttpServletResponse response,
             Controller con) throws ServletException, IOException {
 
+        String projectName = request.getParameter("projectName");
+        int budget = Integer.parseInt(request.getParameter("budget"));
         
+        boolean status = con.createNewProject(projectName, budget, currentUser);
 
-        //send the input to the Controller and check the status 
-        //boolean status = con.submitProjectProposal(partnerName, country, activity);
+        if(status){
         
-        return true;
-    }
-
-    /*
-     the method saves the POE in the Database 
-     and checks if it's saved successfully or not
-     */
-    private boolean submitPOE(HttpServletRequest request,
-            HttpServletResponse response,
-            Controller con) throws ServletException, IOException {
-
-        //boolean status = con.submitPOE();
-        return true;
-    }
-
-    private boolean submitDocuments(HttpServletRequest request,
-            HttpServletResponse response,
-            Controller con) throws ServletException, IOException {
-
-        //boolean status = con.submitDocuments();
-        return true;
-
+            RequestDispatcher dispatcher = request.getRequestDispatcher("PartnerTemplate.html");
+            dispatcher.forward(request, response);
+        
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("CreateProjectPage.html");
+        dispatcher.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

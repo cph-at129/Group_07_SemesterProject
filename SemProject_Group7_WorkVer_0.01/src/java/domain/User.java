@@ -20,6 +20,16 @@ public class User {
         this.phone = phone;
         this.type = type;
     }
+    public User(String login, String password,int partnerID, String fName, String lName, String phone, String type) {
+        
+        this.login = login;
+        this.password = password;
+        this.partnerID = partnerID;
+        this.fName = fName;
+        this.lName = lName;
+        this.phone = phone;
+        this.type = type;
+    }
 
     public User(String login, String password) {
         

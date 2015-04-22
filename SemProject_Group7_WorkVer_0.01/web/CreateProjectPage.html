@@ -6,12 +6,11 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>New Project Template</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-
         <div class="header">
             <h1>Fill in the form and submit your project!</h1><br/>
         </div>
@@ -19,8 +18,8 @@ and open the template in the editor.
             <form action="UIServlet">
                 <p>Project Name: </p><input type="text" name="projectName" placeholder="project name"/><br/><br/>
                 <p>Budget: </p><input type="text" name="budget" placeholder="budget"/><br/><br/>
-                <p>Upload description: </p><input type="file" name="newProjectFile"/><br/><br/>
-                <input type="hidden" name="command" value="submitNewProject"/>
+                <p>Upload description: </p><input type="file" name="newProjectFile" /><br/><br/>
+                <input type="hidden" name="command" value="createNewProject"/>
                 <input type="submit" name="submitNewProjectButton" value="submit"/>
             </form>
         </div>

@@ -10,7 +10,6 @@ import dataSource.DBFacade;
 import domain.POE;
 import domain.Partner;
 import domain.Project;
-import domain.Proposal;
 import domain.User;
 import domain.passwordEncryption.PasswordEncryptor;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 public class Controller {
 
     private DBFacade dbf;
-    private Proposal conProposal;
     private User conUser;
     private Project conProject;
     private POE conPOE;
@@ -37,7 +35,6 @@ public class Controller {
     public Controller() {
 
         dbf = DBFacade.getInstance();
-        conProposal = null;
         conUser = null;
         conProject = null;
         conPOE = null;
@@ -60,15 +57,22 @@ public class Controller {
 
         if (status) {
 
+            int partnerID = getRegisteredPartnerID(companyName);
+            
             PasswordEncryptor pe = new PasswordEncryptor();
             String encryptedPassword = pe.encryptPassword_SHA1(password);
 
-            conUser = new User(login, encryptedPassword, fName, lName, phone, type);
+            conUser = new User(login, encryptedPassword, partnerID, fName, lName, phone, type);
 
             status = dbf.registerUser(conUser);
         }
         return status;
 
+    }
+    private int getRegisteredPartnerID(String companyName){
+    
+        return dbf.getRegisteredPartnerID(companyName);
+    
     }
 
     public boolean registerDellEmployee(String login, String password, String fName, String lName, String phone) {
@@ -118,15 +122,17 @@ public class Controller {
 
     }
 
-////submit project proposal
-//    public boolean submitProjectProposal(String partnerName, String country, String activity){
-//        
-//        conProposal = new Proposal(partnerName, country, activity);
-//        
-//        System.out.println("IN controller");
-//        System.out.println(conProposal);
-//        boolean status = dbf.submitProjectProposal(conProposal);
-//        
-//        return status;
-//    }
+    public boolean createNewProject(String projectName, int budget, String currentUserLogin) {
+        
+        int partnerID = getCurrentUserID(currentUserLogin);
+        int qbid = 415;
+        
+        conProject = new Project(projectName, null, null, budget, partnerID, qbid, "intel i7", "No");
+        return dbf.createNewProject(conProject);
+    }
+    private int getCurrentUserID(String currentUserLogin){
+    
+        return dbf.getCurrentUserID(currentUserLogin);
+    
+    }
 }

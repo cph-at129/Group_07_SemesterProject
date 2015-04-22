@@ -72,5 +72,20 @@ public class DBFacade {
         return projectMapper.getProjects(con);
     
     }
+    public boolean createNewProject(Project dbfProject){
+    
+        return projectMapper.createNewProject(dbfProject, con);
+    
+    }
+    public int getCurrentUserID(String currentUserLogin){
+    
+        return userMapper.getCurrentUserID(currentUserLogin, con);
+    
+    }
+    public int getRegisteredPartnerID(String companyName){
+    
+        return partnerMapper.getRegisteredPartnerID(companyName, con);
+    
+    }
     
 }

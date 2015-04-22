@@ -14,12 +14,15 @@ public class Project {
     private int qbid;
     private String completed;
     
-    public Project(String projectName, String startDate, String endDate, int budget, String completed) {
+    public Project(String projectName, String startDate, String endDate, int budget,int partnerID,int qbid, String type, String completed) {
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
+        this.type = type;
         this.completed = completed;
+        this.partnerID = partnerID;
+        this.qbid = qbid;
     }
 
     public Project(int projectID, String projectName, String startDate, String endDate,

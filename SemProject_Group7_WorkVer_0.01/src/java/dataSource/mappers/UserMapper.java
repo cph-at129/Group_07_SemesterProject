@@ -18,8 +18,6 @@ public class UserMapper {
 
         PreparedStatement statement = null;
 
-        System.out.println(ur.toString());
-
         try {
 
             statement = con.prepareStatement(sqlString);
@@ -239,5 +237,54 @@ public class UserMapper {
 
         }
         return status;
+    }
+
+    public int getCurrentUserID(String currentUserLogin, Connection con) {
+        
+        int userID = 0;
+
+        User userDetails = null;
+
+        //check if the userID exist in the database
+        String sqlString
+                = "SELECT u.userID "
+                + "FROM user_ u "
+                + "WHERE u.login = ? ";
+
+        PreparedStatement statement = null;
+
+        try {
+
+            statement = con.prepareStatement(sqlString);
+
+            statement.setString(1, currentUserLogin);
+            
+            ResultSet rs = statement.executeQuery();
+            
+            while(rs.next()){
+            
+                userID = rs.getInt(1);
+            
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Fail in UserMapper - logIn");
+            System.out.println(e.getMessage());
+        } finally {
+
+            try {
+
+                statement.close();
+
+            } catch (SQLException e) {
+
+                System.out.println("Fail2 in UserMapper - logIn");
+                System.out.println(e.getMessage());
+            }
+
+        }
+        return userID;
+        
     }
 }
